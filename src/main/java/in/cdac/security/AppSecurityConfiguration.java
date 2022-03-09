@@ -41,6 +41,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.anyRequest().authenticated()
 			.and().exceptionHandling()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and().cors()
 			;
 		
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
