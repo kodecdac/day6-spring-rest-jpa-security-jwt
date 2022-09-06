@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import in.cdac.model.UserModel;
 import in.cdac.repository.UserModelRepository;
 
+import java.util.List;
+
 @Service
 public class UserModelService {
 
@@ -22,6 +24,11 @@ public class UserModelService {
 	
 	public UserModel readByUserName(String username) {
 		return userModelRepository.findByUsername(username);
+	}
+
+
+	public List<UserModel> readAllUser() {
+		return userModelRepository.findAll();
 	}
 	
 }

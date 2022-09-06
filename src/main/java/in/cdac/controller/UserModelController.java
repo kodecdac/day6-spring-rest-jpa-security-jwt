@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import in.cdac.model.UserModel;
 import in.cdac.service.UserModelService;
 
+import java.util.List;
+
 @Validated
 @RestController
 @RequestMapping("/user")
@@ -35,6 +37,12 @@ public class UserModelController {
 	public ResponseEntity<?> readByUserName(@PathVariable String username) {
 		UserModel userModel =  userModelService.readByUserName(username);
 		return new ResponseEntity<>(userModel, HttpStatus.OK);
+	}
+
+	@GetMapping("/")
+	public ResponseEntity<?> readAlluser() {
+		List<UserModel> userList =  userModelService.readAllUser();
+		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 
 }
