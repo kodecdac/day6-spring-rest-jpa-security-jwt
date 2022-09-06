@@ -30,5 +30,9 @@ public class UserModelService {
 	public List<UserModel> readAllUser() {
 		return userModelRepository.findAll();
 	}
-	
+
+	public void deleteById(long id) {
+		userModelRepository.deleteById(id);
+	}
+
 }
