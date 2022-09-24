@@ -7,6 +7,7 @@ import in.cdac.model.UserModel;
 import in.cdac.repository.UserModelRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserModelService {
@@ -26,6 +27,10 @@ public class UserModelService {
 		return userModelRepository.findByUsername(username);
 	}
 
+	public UserModel readById(long id) {
+		return userModelRepository.findById(id).get();
+	}
+
 
 	public List<UserModel> readAllUser() {
 		return userModelRepository.findAll();
@@ -33,6 +38,21 @@ public class UserModelService {
 
 	public void deleteById(long id) {
 		userModelRepository.deleteById(id);
+	}
+
+	public void updateById(long id, UserModel userModel) {
+		Optional<UserModel> user = userModelRepository.findById(id);
+
+		if(user.isPresent()) {
+			UserModel dbUser =  user.get();
+
+			dbUser.setEmail(userModel.getEmail());
+			dbUser.setPassword(userModel.getPassword());
+			dbUser.setMobile(userModel.getMobile());
+
+			userModelRepository.saveAndFlush(dbUser);
+		}
+
 	}
 
 }
